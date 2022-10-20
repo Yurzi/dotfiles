@@ -66,6 +66,8 @@ vim.bo.autoread = true
 -- 自动折行
 vim.wo.wrap = true
 
+-- 光标上下保留
+vim.o.scrolloff = 8
 -- 光标在行首尾时<Left><Right>可以跳到下一行
 -- vim.o.whichwrap = '<,>,[,]'
 
@@ -76,7 +78,7 @@ vim.o.hidden = true
 vim.o.mouse = "a"
 
 -- smaller updatetime
-vim.o.updatetime = 300
+vim.o.updatetime = 600
 
 -- 设置 timeoutlen 为等待键盘快捷键连击时间500毫秒，可根据需要设置
 vim.o.timeoutlen = 1000
