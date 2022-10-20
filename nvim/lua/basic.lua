@@ -23,12 +23,13 @@ vim.wo.relativenumber = true
 -- 高亮当前行和列
 vim.wo.cursorline = false
 vim.wo.cursorcolumn = true
+vim.o.scrolloff = 8
 
 -- 显示左侧图标显示列
 vim.wo.signcolumn = "yes"
 
 -- 右参考线
-vim.wo.colorcolumn = "108"
+vim.wo.colorcolumn = "80"
 
 -- 缩进4个空格等于一个Tab
 vim.o.tabstop = 2
