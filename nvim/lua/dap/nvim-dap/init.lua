@@ -2,8 +2,17 @@
 -- dap_install.setup({
 --   installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
 -- })
-local dap = require("dap")
-local dapui = require("dapui")
+local status_dap, dap = pcall(require, "dap")
+local status_dapui, dapui = pcall(require, "dapui")
+
+if not status_dap then
+  vim.notify("nvim-dap not found!")
+  return
+end
+if not status_dapui then
+  vim.notify("nvim-dapui not found!")
+  return
+end
 
 require("nvim-dap-virtual-text").setup({
   commented = true,

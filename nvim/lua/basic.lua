@@ -14,7 +14,7 @@ vim.o.fileencoding = "utf-8"
 vim.o.fileencodings = "ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1"
 
 -- shell
-vim.o.shell = "pwsh"
+-- vim.o.shell = "pwsh"
 
 -- 使用相对行号
 vim.wo.number = true

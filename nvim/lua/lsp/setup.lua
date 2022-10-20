@@ -1,4 +1,9 @@
-local lspconfig = require("lspconfig")
+local status, lspconfig = pcall(require, "lspconfig")
+if not status then
+  vim.notify("lspconfig not found!")
+  return
+end
+
 local mason_lspconfig = require("mason-lspconfig")
 --  安装列表
 -- { key: 语言 value: 配置文件 }
