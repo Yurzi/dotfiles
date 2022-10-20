@@ -13,6 +13,11 @@ local opts = {
     end
 
     -- 绑定快捷键
+    buf_set_keymap("n",
+      "<leader>ch",
+      "<cmd>ClangdSwitchSourceHeader<CR>",
+      { noremap = true, silent = true })
+
     require("keybindings").mapLSP(buf_set_keymap)
     -- 保存时自动格式化
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
