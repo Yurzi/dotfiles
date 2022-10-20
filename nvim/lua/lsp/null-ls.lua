@@ -33,7 +33,7 @@ null_ls.setup({
     -- rust
     formatting.rustfmt,
     -- c/cpp
-    with_root_file(formatting.clang_format, ".clang-format"),
+    -- with_root_file(formatting.clang_format, ".clang-format"),
   },
 
   --[[autosave
