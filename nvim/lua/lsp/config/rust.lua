@@ -12,6 +12,7 @@ local opts = {
     end
     -- 绑定快捷键
     require("keybindings").mapLSP(buf_set_keymap)
+    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
   end,
   settings = {
     -- to enable rust-analyzer settings visit:

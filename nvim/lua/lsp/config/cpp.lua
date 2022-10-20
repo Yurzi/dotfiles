@@ -1,5 +1,5 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.offsetEncoding = {"utf-16"}
+capabilities.offsetEncoding = { "utf-16" }
 
 local opts = {
   capabilities = capabilities,
@@ -13,14 +13,15 @@ local opts = {
     end
 
     -- 绑定快捷键
-    buf_set_keymap("n",
+    buf_set_keymap(
+      "n",
       "<leader>ch",
       "<cmd>ClangdSwitchSourceHeader<CR>",
-      { noremap = true, silent = true })
-
+      { noremap = true, silent = true }
+    )
     require("keybindings").mapLSP(buf_set_keymap)
     -- 保存时自动格式化
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
   end,
 }
 
