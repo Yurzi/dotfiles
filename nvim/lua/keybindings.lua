@@ -147,7 +147,7 @@ pluginKeys.cmp = function(cmp)
     ["<C-j>"] = cmp.mapping.select_next_item(),
     -- 确认
     ["<CR>"] = cmp.mapping.confirm({
-      select = true,
+      select = false,
       behavior = cmp.ConfirmBehavior.Replace,
     }),
     -- 如果窗口内容太多，可以滚动
