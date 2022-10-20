@@ -29,7 +29,7 @@ vim.o.scrolloff = 8
 vim.wo.signcolumn = "yes"
 
 -- 右参考线
-vim.wo.colorcolumn = "80"
+vim.wo.colorcolumn = "128"
 
 -- 缩进4个空格等于一个Tab
 vim.o.tabstop = 2
