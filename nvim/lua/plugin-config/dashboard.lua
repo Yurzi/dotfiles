@@ -4,6 +4,9 @@ if not status then
   return
 end
 
+local nvim_config_root = vim.fn.stdpath("config")
+local nvim_data_root = vim.fn.stdpath("data")
+
 db.hide_statusline = false
 
 db.custom_footer = {
@@ -26,12 +29,12 @@ db.custom_center = {
   {
     icon = "  ",
     desc = "Edit keybindings                    ",
-    action = "edit ~/Appdata/Local/nvim/lua/keybindings.lua",
+    action = "edit ".. nvim_config_root .."/lua/keybindings.lua",
   },
   {
     icon = "  ",
     desc = "Edit Projects                       ",
-    action = "edit ~/Appdata/Local/nvim-data/project_nvim/project_history",
+    action = "edit ".. nvim_data_root .."/project_nvim/project_history",
   },
   -- {
   --   icon = '  ',
