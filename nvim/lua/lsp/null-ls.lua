@@ -36,10 +36,10 @@ null_ls.setup({
     with_root_file(formatting.clang_format, ".clang-format"),
   },
 
-  -- autosave
+  --[[autosave
   on_attach = function(client)
     if client.server_capabilities.documentFormattingProvider then
       vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
-  end,
+  end,]]--
 })
