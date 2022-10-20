@@ -1,7 +1,17 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+local status_ok, schemas_store = pcall(require, "schemastore")
+if not status_ok then
+  vim.notify("fallback! schemastore not found!")
+end
 
 local opts = {
+  settings = {
+    json = {
+      schemas = status_ok and schemas_store.json.schemas() or {},
+      validate = { enable = true },
+    },
+  },
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     -- 禁用格式化功能，交给专门插件插件处理
