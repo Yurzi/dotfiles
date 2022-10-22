@@ -37,7 +37,6 @@ packer.startup({
 
     -- Color Scheme --
     use("sainnhe/sonokai")
-    use("xiyaowong/nvim-transparent")
 
     -- File Explorer --
     use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })

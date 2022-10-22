@@ -9,7 +9,6 @@ require("plugins")
 
 -- ColorScheme 设置
 require("colorscheme")
-require("plugin-config.nvim-transparent")
 
 -- Plugin Configs --
 -- Nvim-Tree
