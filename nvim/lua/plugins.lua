@@ -86,6 +86,13 @@ packer.startup({
 
     -- Rust Tools --
     use("simrat39/rust-tools.nvim")
+
+    -- addition syntax --
+    -- plantuml
+    use("aklt/plantuml-syntax")
+
+    -- useful tools
+    use("ethanholz/nvim-lastplace")
   end,
 
   config = {

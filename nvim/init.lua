@@ -27,6 +27,8 @@ require("plugin-config.dashboard")
 require("plugin-config.project")
 -- Nvim-TreeSitter
 require("plugin-config.nvim-treesitter")
+-- lastplace
+require("plugin-config.lastplace")
 
 -- 内置LSP --
 -- Mason

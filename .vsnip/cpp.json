@@ -23,5 +23,14 @@
       " */"
     ],
     "description": "Function comment block"
+  },
+  "off-cf": {
+    "prefix": "// clang-",
+    "body": [
+      "// clang-format off",
+      "$1",
+      "// clang-format on"
+    ],
+    "description": "Turn off clang-format temporary"
   }
 }

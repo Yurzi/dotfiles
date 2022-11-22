@@ -1,0 +1,25 @@
+#!/usr/bin/zsh
+
+# Load powerlevel10k theme
+zinit ice lucid depth='1' # git clone depth
+zinit light romkatv/powerlevel10k
+
+# Load auto suggestion
+zinit ice lucid wait='0'
+zinit light zsh-users/zsh-autosuggestions
+
+# Load sytanx highlight
+zinit ice lucid wait='0' atinit='zpcompinit'
+zinit light zdharma/fast-syntax-highlighting
+
+# Load OMZ Lib
+zinit snippet OMZL::clipboard.zsh
+zinit snippet OMZL::termsupport.zsh
+
+# Load OMZ plugin
+zinit ice lucid wait='1'
+zinit snippet OMZP::git
+
+zinit ice lucid wait='1'
+zinit snippet OMZP::sudo
+
