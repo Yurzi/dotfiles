@@ -160,10 +160,10 @@ Function Get-RemoteNeovideSession
 
     foreach ($line in $host_block)
     {
-      if ($line -match "^\s*LocalForward\s+localhost:(\d+)\s+localhost:(\d+)\s*$")
+      if ($line -match "^\s*LocalForward\s+(localhost|127.0.0.1):(\d+)\s+(localhost|127.0.0.1):(\d+)\s*$")
       {
-        $local_port = $matches[1]
-        $remote_port = $matches[2]
+        $local_port = $matches[2]
+        $remote_port = $matches[4]
       }
 
       if ($local_port -and $remote_port)
@@ -176,6 +176,16 @@ Function Get-RemoteNeovideSession
 
       }
     }
+
+    if ($local_port -and $remote_port)
+    {
+      Write-Host "Local port: $local_port, Remote port: $remote_port"
+    } else
+    {
+      Write-Host "No LocalForward found in ssh config file"
+      return
+    }
+      
   }
 
   process
