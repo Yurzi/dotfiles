@@ -5,7 +5,8 @@
 local opt = vim.opt
 
 opt.shell = "pwsh"
-opt.shellcmdflag = "-command"
+opt.shellcmdflag =
+  "-NoProfile -NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';$PSStyle.OutputRendering = [System.Management.Automation.OutputRendering]::PlainText;"
 opt.shellquote = '"'
 opt.shellxquote = ""
 vim.o.guifont = "CaskaydiaCove Nerd Font:h14" -- text below applies for VimScript
