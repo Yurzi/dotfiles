@@ -5,6 +5,7 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/catppuccin_latte.omp.json" 
 Set-Alias -Name cat -Value bat
 Set-Alias -Name which -Value Get-Command
 Set-Alias -Name sudo -Value gsudo
+Set-Alias -Name rnh -Value Get-RemoteNeovideSession
 
 Remove-Alias ls -ErrorAction SilentlyContinue
 
@@ -128,7 +129,11 @@ Function Get-RemoteNeovideSession
   param (
     [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
     [ValidateNotNullOrEmpty()]
-    [string]$RemoteHost
+    [string]$RemoteHost,
+
+    [Parameter(Mandatory = $false, Position = 1)]
+    [string]
+    $DirOrFilePath
   )
 
   begin
@@ -207,7 +212,7 @@ Function Get-RemoteNeovideSession
     } else
     {
       # use ssh to establish a connection
-      ssh $RemoteHost nvim --headless --listen localhost:$remote_port &
+      ssh $RemoteHost nvim --headless --listen localhost:$remote_port $DirOrFilePath &
     }
   }
 
