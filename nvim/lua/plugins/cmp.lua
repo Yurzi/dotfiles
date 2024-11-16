@@ -10,9 +10,12 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      opts.completion = vim.tbl_deep_extend("force", opts.completion, {
-        autocomplete = false,
-      })
+      local auto_select = false
+
+      opts.preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None
+      opts.completion = {
+        completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
+      }
 
       -- use ctrl+n to toggle complete
       opts.mapping = vim.tbl_deep_extend("force", opts.mapping, {
