@@ -111,6 +111,15 @@ Function paru
   Remove-Item env:HTTPS_PROXY
 }
 
+function y {
+    $tmp = [System.IO.Path]::GetTempFileName()
+    yazi $args --cwd-file="$tmp"
+    $cwd = Get-Content -Path $tmp
+    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+        Set-Location -LiteralPath $cwd
+    }
+    Remove-Item -Path $tmp
+}
 
 # remote nvim session
 Function Get-RemoteNeovideSession
