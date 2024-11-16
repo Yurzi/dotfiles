@@ -212,12 +212,17 @@ Function Get-RemoteNeovideSession
     } else
     {
       # use ssh to establish a connection
-      ssh $RemoteHost nvim --headless --listen localhost:$remote_port $DirOrFilePath &
+      ssh $RemoteHost "zsh -i -c 'cd $DirOrFilePath;nvim --headless --listen localhost:$remote_port;exit'" &
     }
   }
 
   end
   {
+    $is_used = $false
+    while(-Not $is_used)
+    {
+      $is_used = Test-NetConnection -ComputerName "localhost" -Port $local_port -InformationLevel Quiet
+    }
     # start a new neovide session attached to remote
     neovide --server localhost:$local_port
   }
