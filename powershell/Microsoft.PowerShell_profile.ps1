@@ -5,7 +5,7 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/catppuccin_latte.omp.json" 
 Set-Alias -Name cat -Value bat
 Set-Alias -Name which -Value Get-Command
 Set-Alias -Name sudo -Value gsudo
-Set-Alias -Name rnh -Value Get-RemoteNeovideSession
+Set-Alias -Name rnh -Value Get-RemoteNeovideSessionFromSshConfig
 
 Remove-Alias ls -ErrorAction SilentlyContinue
 
@@ -112,118 +112,17 @@ Function paru
   Remove-Item env:HTTPS_PROXY
 }
 
-function y {
-    $tmp = [System.IO.Path]::GetTempFileName()
-    yazi $args --cwd-file="$tmp"
-    $cwd = Get-Content -Path $tmp
-    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
-        Set-Location -LiteralPath $cwd
-    }
-    Remove-Item -Path $tmp
-}
-
-# remote nvim session
-Function Get-RemoteNeovideSession
+function y
 {
-  [CmdletBinding()]
-  param (
-    [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
-    [ValidateNotNullOrEmpty()]
-    [string]$RemoteHost,
-
-    [Parameter(Mandatory = $false, Position = 1)]
-    [string]
-    $DirOrFilePath
-  )
-
-  begin
+  $tmp = [System.IO.Path]::GetTempFileName()
+  yazi $args --cwd-file="$tmp"
+  $cwd = Get-Content -Path $tmp
+  if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path)
   {
-    # collect local port and remote port from ssh config file
-    # default ssh config file
-    $CONFIG_FILE = Resolve-Path "~/.ssh/config"
-    # find the local forward info about $Host
-    # get host block
-    $config_lines = Get-Content $CONFIG_FILE | Select-String -Pattern "Host\s+$RemoteHost\s*$" -Context 0, 100
-
-    $about_lines = $config_lines.Context.PostContext
-    $about_lines = ,$config_lines.Line + $about_lines
-
-    $host_block = @()
-    $in_hostblock = $false
-    foreach ($line in $about_lines)
-    {
-      if ($line -match "^Host\s+(.+)$")
-      {
-        if ($in_hostblock)
-        {
-          break
-        } else
-        {
-          $in_hostblock = $true
-        }
-      }
-
-      if ($in_hostblock)
-      {
-        $host_block += $line
-      }
-    }
-    # extract local port and remote port from first LocalForward line
-    $local_port = $null
-    $remote_Port = $null
-
-    foreach ($line in $host_block)
-    {
-      if ($line -match "^\s*LocalForward\s+(localhost|127.0.0.1):(\d+)\s+(localhost|127.0.0.1):(\d+)\s*$")
-      {
-        $local_port = $matches[2]
-        $remote_port = $matches[4]
-      }
-
-      if ($local_port -and $remote_port)
-      {
-        break
-      } else
-      {
-        $local_port = $null
-        $remote_port = $null
-
-      }
-    }
-
-    if ($local_port -and $remote_port)
-    {
-      Write-Host "Local port: $local_port, Remote port: $remote_port"
-    } else
-    {
-      Write-Host "No LocalForward found in ssh config file"
-      return
-    }
-      
+    Set-Location -LiteralPath $cwd
   }
-
-  process
-  {
-    # check if local port is be used
-    $is_used = Test-NetConnection -ComputerName "localhost" -Port $local_port -InformationLevel Quiet
-    if($is_used)
-    {
-      Write-Host "Local port $local_port is used, may be a connection is already established"
-    } else
-    {
-      # use ssh to establish a connection
-      ssh $RemoteHost "zsh -i -c 'cd $DirOrFilePath;nvim --headless --listen localhost:$remote_port;exit'" &
-    }
-  }
-
-  end
-  {
-    $is_used = $false
-    while(-Not $is_used)
-    {
-      $is_used = Test-NetConnection -ComputerName "localhost" -Port $local_port -InformationLevel Quiet
-    }
-    # start a new neovide session attached to remote
-    neovide --server localhost:$local_port
-  }
+  Remove-Item -Path $tmp
 }
+
+Import-Module "$(Split-Path $PROFILE)/RemoteNeovide.psm1"
+Import-Module "$(Split-Path $PROFILE)/custom-func.psm1"
