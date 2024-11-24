@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 -- add neovide support
-vim.o.guifont = "CaskaydiaCove Nerd Font:h14" -- text below applies for VimScript
+vim.o.guifont = "CaskaydiaCove Nerd Font,LXGW WenKai Mono:h14" -- text below applies for VimScript
 vim.g.neovide_fullscreen = true
 vim.g.neovide_theme = "auto"
 vim.g.neovide_input_ime = true -- disable input method
