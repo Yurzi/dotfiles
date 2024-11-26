@@ -1,5 +1,6 @@
-# Load oh-my-posh
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/catppuccin_latte.omp.json" | Invoke-Expression
+# Load Starship
+Invoke-Expression (&starship init powershell)
+
 
 # Alias
 Set-Alias -Name cat -Value bat
