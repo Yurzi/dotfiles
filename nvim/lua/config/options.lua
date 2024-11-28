@@ -9,8 +9,11 @@ opt.shellcmdflag =
   "-NoProfile -NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';$PSStyle.OutputRendering = [System.Management.Automation.OutputRendering]::PlainText;"
 opt.shellquote = '"'
 opt.shellxquote = ""
+
 vim.o.guifont = "CaskaydiaCove Nerd Font,LXGW WenKai Mono:h14" -- text below applies for VimScript
 
 vim.g.neovide_fullscreen = true
 vim.g.neovide_theme = "auto"
-vim.g.neovide_input_ime = true -- disable input method
+vim.g.neovide_input_ime = false -- disable input method
+vim.g.neovide_transparency = 0.78
+vim.g.neovide_window_blurred = true
