@@ -8,5 +8,5 @@ vim.o.guifont = "CaskaydiaCove Nerd Font,LXGW WenKai Mono:h14" -- text below app
 vim.g.neovide_fullscreen = true
 vim.g.neovide_theme = "auto"
 vim.g.neovide_input_ime = false -- disable input method
-vim.g.neovide_transparency = 0.78
+vim.g.neovide_transparency = 1
 vim.g.neovide_window_blurred = true
