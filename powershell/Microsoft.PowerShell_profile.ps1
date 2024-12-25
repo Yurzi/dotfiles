@@ -28,6 +28,11 @@ Function ll()
   lsd -F -h -l $args
 }
 
+Function icat()
+{
+  chafa -f sixels $args
+}
+
 Function touch
 {
   param (
@@ -53,6 +58,16 @@ Function touch
   }
 }
 
+Function btop()
+{
+  gsudo btop $args
+}
+
+Function wgt()
+{
+  winget $args --proxy http://127.0.0.1:2080
+}
+
 # Extra Function
 Function Set-SessionProxy
 {
@@ -75,7 +90,7 @@ Function Import-Toolchain
 
   if ("msvc" -eq $type)
   {
-    pwsh -noe -c '&{Import-Module "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell 34d3ac92}'
+    pwsh -noe -c '&{Import-Module "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell 0466a435}'
   } 
   if ("msys2-ucrt")
   {
@@ -111,6 +126,10 @@ Function paru
 
   Remove-Item env:HTTP_PROXY
   Remove-Item env:HTTPS_PROXY
+
+  # pacman upgrade
+  Write-Host "[PACMAN]"
+  pacman -Syu --noconfirm
 }
 
 function y
