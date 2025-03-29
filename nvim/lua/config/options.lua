@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 -- add neovide support
-vim.o.guifont = "CaskaydiaCove Nerd Font,LXGW WenKai Mono:h17" -- text below applies for VimScript
+vim.o.guifont = "CaskaydiaCove Nerd Font,LXGW WenKai Mono,monospace:h17" -- text below applies for VimScript
 
 vim.o.scrolloff = 14
 
