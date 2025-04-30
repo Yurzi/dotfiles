@@ -2,7 +2,11 @@ return {
   {
     "catppuccin",
     opts = {
-      -- flavour = "latte",
+      flavour = "auto",
+      background = {
+        light = "latte",
+        dark = "mocha",
+      },
       transparent_background = true,
       integrations = {
         cmp = true,
